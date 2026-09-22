@@ -4,6 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Kelly｜會計事務丙級備考 App</title>
+<meta name="theme-color" content="#7667d8">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="會計丙級">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+
 <style>
 :root{--bg:#fff9f3;--card:#fff;--ink:#273047;--muted:#7c8294;--line:#ece8f2;--purple:#7667d8;--purple2:#eeeaff;--mint:#5dbba6;--mint2:#e7f8f3;--pink:#ee8fa4;--pink2:#fff0f4;--yellow:#f1bb52;--yellow2:#fff5d8;--blue:#65a9dc;--blue2:#eaf6ff;--bad:#d85f69;--good:#3d9b77;--shadow:0 10px 28px rgba(91,77,122,.09)}
 *{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","PingFang TC",sans-serif;background:linear-gradient(180deg,#fff8f1 0,#f7f7ff 55%,#f2fbf8 100%);color:var(--ink);min-height:100vh}
@@ -172,6 +179,10 @@ function statsPage(){
 }
 window.exportData=()=>{let b=new Blob([JSON.stringify(S,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='kelly_accounting_progress.json';a.click()}
 window.importData=(el)=>{let f=el.files[0],r=new FileReader();r.onload=()=>{try{S=JSON.parse(r.result);save();render();alert('進度已匯入')}catch(e){alert('檔案格式錯誤')}};r.readAsText(f)}
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+}
+
 render();
 </script>
 </body></html>
